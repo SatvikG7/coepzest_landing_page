@@ -58,6 +58,7 @@
 				font-size: 4rem;
 				position: absolute;
 				color: white;
+				opacity: 0;
 			}
 			#particles-js {
 				display: flex;
@@ -91,12 +92,22 @@
 				width: 100vw;
 				height: 100vh;
 			}
+			.kws {
+				background-color: gold;
+				color: darkblue;
+				padding: 8px;
+				border-radius: 8px;
+				font-style: italic;
+				font-weight: 700;
+			}
 			@keyframes expand {
 				0% {
 					font-size: 0;
+					opacity: 0;
 				}
 				100% {
 					font-size: 4rem;
+					opacity: 1;
 				}
 			}
 		</style>
@@ -104,13 +115,18 @@
 	<body>
 		<div id="particles-js">
 			<div id="s1" class="slide">
-				Are you ready to Unleash Your Strengths?
+				Are you ready to Unleash Your
+				<span class="kws">Strengths</span>?
 			</div>
 			<div id="s2" class="slide">
-				Are you ready to Unleash Your Potential?
+				Are you ready to Unleash Your
+				<span class="kws">Potential</span>?
 			</div>
 			<div id="s3" class="slide">
-				<p>Are you ready to Unleash the Infinity?</p>
+				<p>
+					Are you ready to Unleash the
+					<span class="kws">Infinity</span>?
+				</p>
 				<div id="btn">Yes!</div>
 			</div>
 		</div>
