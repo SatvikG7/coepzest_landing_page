@@ -7,207 +7,72 @@
 		<title>Zest'23</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/84/three.min.js"></script>
 		<script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/127738/perlin.js"></script>
-		<style>
-			body {
-				margin: 0;
-			}
-
-			#particles-js {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-				background-color: #101010;
-				background-repeat: no-repeat;
-				background-size: cover;
-				background-position: 50% 50%;
-				cursor: crosshair;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-			}
-
-			.slide {
-				font-size: 4rem;
-				position: absolute;
-				color: white;
-				/* opacity: 0; */
-			}
-
-			#s1,
-			#s2,
-			#s3 {
-				opacity: 0;
-				font-size: 2rem;
-			}
-
-			#s1 {
-				animation: expand 3s ease-in;
-			}
-
-			#s2 {
-				animation: expand 3s 3s ease-in;
-			}
-
-			#s3 {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-direction: column;
-				gap: 12px;
-				animation: expand 3s 6s ease-in 1 forwards;
-			}
-
-			#s1 span,
-			#s2 span,
-			#s3 span {
-				margin: 0 5px;
-				font-family: "Montserrat", sans-serif;
-				user-select: none;
-			}
-
-			#btn {
-				background-image: linear-gradient(#ffbb00, #c00000);
-				font-family: "Montserrat", sans-serif;
-				display: inline;
-				border-radius: 12px;
-				cursor: pointer;
-				animation: expandbtn 3s 6s ease-in 1 forwards;
-				user-select: none;
-			}
-
-			#app {
-				display: block;
-				width: 100vw;
-				height: 100vh;
-			}
-
-			.kws {
-				background-color: gold;
-				color: darkblue;
-				padding: 0 8px;
-				border-radius: 8px;
-				font-style: italic;
-				font-weight: 700;
-				margin: -8px !important;
-			}
-			#wormhole {
-				position: absolute;
-				width: 100vw;
-				height: 100vh;
-				display: none;
-				user-select: none;
-				overflow: hidden;
-			}
-
-			@keyframes expand {
-				0% {
-					font-size: 2;
-				}
-
-				100% {
-					font-size: 3rem;
-					opacity: 1;
-				}
-			}
-			@keyframes expandbtn {
-				0% {
-					opacity: 0;
-				}
-
-				100% {
-					opacity: 1;
-					padding: 12px;
-				}
-			}
-
-			@media screen and (max-width: 640px) {
-				#s1,
-				#s2,
-				#s3-txt {
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					height: 100vh;
-					justify-content: center;
-					gap: 12px;
-				}
-
-				#s3-txt {
-					height: auto;
-				}
-
-				#s3 {
-					height: 100vh;
-					justify-content: space-evenly;
-					gap: 0px;
-				}
-
-				#s1 span,
-				#s2 span,
-				#s3-txt span {
-					margin: 0;
-				}
-
-				@keyframes expand {
-					0% {
-						font-size: 1;
-						opacity: 0;
-					}
-
-					100% {
-						font-size: 3rem;
-						opacity: 1;
-					}
-				}
-			}
-		</style>
+		<link rel="stylesheet" href="style.css" />
 	</head>
 
-	<body>
+	<body id="body">
 		<div id="particles-js">
-			<div id="s1" class="slide">
-				<span>Are</span><span>you</span><span>ready</span><span>to</span
-				><span>Unleash</span><span>your</span>
-				<span>
-					<span class="kws">Strengths</span>
-					<span>?</span>
-				</span>
-			</div>
-			<div id="s2" class="slide">
-				<span>Are</span><span>you</span><span>ready</span><span>to</span
-				><span>Unleash</span><span>your</span>
-				<span>
-					<span class="kws">Potential</span>
-					<span>?</span>
-				</span>
-			</div>
-			<div id="s3" class="slide">
-				<span id="s3-txt">
+			<div id="main">
+				<div class="pre-text">
 					<span>Are</span><span>you</span><span>ready</span
-					><span>to</span><span>Unleash</span><span>the</span>
-					<span>
-						<span class="kws">Infinity</span>
-						<span>?</span>
-					</span>
-				</span>
-				<div id="btn">Yes!</div>
+					><span>to</span>
+				</div>
+				<div class="dropping-texts">
+					<div>Unleash your Strengths?</div>
+					<div>Unleash your Potential?</div>
+					<div>Unleash the Infinity?</div>
+				</div>
+				<div class="breathing-texts">
+					<div>Unleash your Strengths?</div>
+					<div>Unleash your Potential?</div>
+					<div>Unleash the Infinity?</div>
+				</div>
 			</div>
 		</div>
+
 		<canvas id="wormhole"></canvas>
 
 		<div id="app">
-			<img
-				style="height: 50vh"
-				src="./Mashaal-transparent-logo.png"
-				alt="marshal"
-			/>
+			<canvas id="canvas"></canvas>
+			<div class="hero-text">
+				<div class="title">Unleash the Infinity</div>
+				<div class="subtitle">The power of endless possibilities</div>
+			</div>
 		</div>
 		<script src="./particles.js"></script>
+
+		<!-- Display config -->
+		<script type="text/javascript">
+			var agent = navigator.userAgent;
+			var isWebkit = agent.indexOf("AppleWebKit") > 0;
+			var isIPad = agent.indexOf("iPad") > 0;
+			var isIOS =
+				agent.indexOf("iPhone") > 0 || agent.indexOf("iPod") > 0;
+			var isAndroid = agent.indexOf("Android") > 0;
+			var isNewBlackBerry =
+				agent.indexOf("AppleWebKit") > 0 &&
+				agent.indexOf("BlackBerry") > 0;
+			var isWebOS = agent.indexOf("webOS") > 0;
+			var isWindowsMobile = agent.indexOf("IEMobile") > 0;
+			var isSmallScreen =
+				screen.width < 767 || (isAndroid && screen.width < 1000);
+			var isUnknownMobile = isWebkit && isSmallScreen;
+			var isMobile =
+				isIOS ||
+				isAndroid ||
+				isNewBlackBerry ||
+				isWebOS ||
+				isWindowsMobile ||
+				isUnknownMobile;
+			var isTablet = isIPad || (isMobile && !isSmallScreen);
+		</script>
+
 		<script>
+			// particle.js animation
 			particlesJS("particles-js", {
 				particles: {
 					number: {
-						value: 100,
+						value: 200,
 						density: { enable: true, value_area: 800 },
 					},
 					color: { value: "#ffffff" },
@@ -263,104 +128,193 @@
 				},
 				retina_detect: true,
 			});
+
 			const whanim = document.getElementById("wormhole");
 			const pjs = document.getElementById("particles-js");
-			const btn = document.getElementById("btn");
-			btn.addEventListener("click", (event) => {
-				whanim.style.display = "block";
-				setTimeout(() => {
-					whanim.style.display = "none";
+			const app = document.getElementById("app");
+			console.log(body);
+
+			if (isMobile && isSmallScreen) {
+				setTimeout((event) => {
+					body.style.overflow = "hidden";
 					pjs.style.display = "none";
-				}, 5000);
-			});
-
-			//Get window size
-			var ww = window.innerWidth,
-				wh = window.innerHeight;
-
-			var renderer = new THREE.WebGLRenderer({
-				canvas: whanim,
-			});
-
-			renderer.setSize(ww, wh);
-			var scene = new THREE.Scene();
-			scene.fog = new THREE.Fog(0x000000, 30, 150);
-			var camera = new THREE.PerspectiveCamera(80, ww / wh, 0.1, 150);
-			camera.position.y = 400;
-			camera.position.z = 400;
-			var points = [
-				[68.5, 185.5],
-				[1, 262.5],
-				[270.9, 281.9],
-				[345.5, 212.8],
-				[178, 155.7],
-				[240.3, 72.3],
-				[153.4, 0.6],
-				[52.6, 53.3],
-				[68.5, 185.5],
-			];
-			for (var i = 0; i < points.length; i++) {
-				var x = points[i][0];
-				var y = Math.random() * 100;
-				var z = points[i][1];
-				points[i] = new THREE.Vector3(x, y, z);
+					createTunnel();
+					whanim.style.display = "block";
+					setTimeout(() => {
+						body.style.overflow = "auto";
+						whanim.style.display = "none";
+						app.style.display = "block";
+					}, 5000);
+				}, 6000);
+			} else {
+				setTimeout((event) => {
+					body.style.overflow = "hidden";
+					pjs.style.display = "none";
+					createTunnel();
+					whanim.style.display = "block";
+					setTimeout(() => {
+						body.style.overflow = "auto";
+						whanim.style.display = "none";
+						app.style.display = "block";
+					}, 5000);
+				}, 8000);
 			}
-			var path = new THREE.CatmullRomCurve3(points);
-			path.closed = true;
-			var tubeDetail = 1000;
-			var circlesDetail = 8;
-			var radius = 8;
-			var frames = path.computeFrenetFrames(tubeDetail, true);
-			var geometry = new THREE.Geometry();
-			var color = new THREE.Color(0x000000);
-			noise.seed(Math.random());
-			for (var i = 0; i < tubeDetail; i++) {
-				var normal = frames.normals[i];
-				var binormal = frames.binormals[i];
-				var index = i / tubeDetail;
-				var p = path.getPointAt(index);
-				var circle = new THREE.Geometry();
-				for (var j = 0; j < circlesDetail; j++) {
-					var position = p.clone();
-					var angle = (j / circlesDetail) * Math.PI * 2;
-					angle += noise.simplex2(index * 10, 0);
-					var sin = Math.sin(angle);
-					var cos = -Math.cos(angle);
-					var normalPoint = new THREE.Vector3(0, 0, 0);
-					normalPoint.x = cos * normal.x + sin * binormal.x;
-					normalPoint.y = cos * normal.y + sin * binormal.y;
-					normalPoint.z = cos * normal.z + sin * binormal.z;
-					normalPoint.multiplyScalar(radius);
-					position.add(normalPoint);
-					circle.vertices.push(position);
-				}
-				circle.vertices.push(circle.vertices[0]);
-				var material = new THREE.LineBasicMaterial({
-					color: new THREE.Color(
-						"hsl(" +
-							(noise.simplex2(index * 10, 0) * 60 + 300) +
-							",50%,50%)"
-					),
+
+			function createTunnel() {
+				//Get window size
+				var ww = window.innerWidth,
+					wh = window.innerHeight;
+
+				var renderer = new THREE.WebGLRenderer({
+					canvas: whanim,
 				});
-				var line = new THREE.Line(circle, material);
-				scene.add(line);
-			}
 
-			var percentage = 0;
+				renderer.setSize(ww, wh);
+				var scene = new THREE.Scene();
+				scene.fog = new THREE.Fog(0x000000, 30, 150);
+				var camera;
+				if (isMobile && isSmallScreen) {
+					camera = new THREE.PerspectiveCamera(
+						100,
+						ww / wh,
+						0.1,
+						150
+					);
+				} else {
+					camera = new THREE.PerspectiveCamera(45, ww / wh, 0.1, 150);
+				}
+				camera.position.y = 400;
+				camera.position.z = 400;
+				var points = [
+					[68.5, 185.5],
+					[1, 262.5],
+					[270.9, 281.9],
+					[345.5, 212.8],
+					[178, 155.7],
+					[240.3, 72.3],
+					[153.4, 0.6],
+					[52.6, 53.3],
+					[68.5, 185.5],
+				];
+				for (var i = 0; i < points.length; i++) {
+					var x = points[i][0];
+					var y = Math.random() * 100;
+					var z = points[i][1];
+					points[i] = new THREE.Vector3(x, y, z);
+				}
+				var path = new THREE.CatmullRomCurve3(points);
+				path.closed = true;
+				var tubeDetail = 1000;
+				var circlesDetail = 8;
+				var radius = 8;
+				var frames = path.computeFrenetFrames(tubeDetail, true);
+				var geometry = new THREE.Geometry();
+				var color = new THREE.Color(0x000000);
+				noise.seed(Math.random());
+				for (var i = 0; i < tubeDetail; i++) {
+					var normal = frames.normals[i];
+					var binormal = frames.binormals[i];
+					var index = i / tubeDetail;
+					var p = path.getPointAt(index);
+					var circle = new THREE.Geometry();
+					for (var j = 0; j < circlesDetail; j++) {
+						var position = p.clone();
+						var angle = (j / circlesDetail) * Math.PI * 2;
+						angle += noise.simplex2(index * 10, 0);
+						var sin = Math.sin(angle);
+						var cos = -Math.cos(angle);
+						var normalPoint = new THREE.Vector3(0, 0, 0);
+						normalPoint.x = cos * normal.x + sin * binormal.x;
+						normalPoint.y = cos * normal.y + sin * binormal.y;
+						normalPoint.z = cos * normal.z + sin * binormal.z;
+						normalPoint.multiplyScalar(radius);
+						position.add(normalPoint);
+						circle.vertices.push(position);
+					}
+					circle.vertices.push(circle.vertices[0]);
+					var material = new THREE.LineBasicMaterial({
+						color: new THREE.Color(
+							"hsl(" +
+								(noise.simplex2(index * 10, 0) * 60 + 300) +
+								",50%,50%)"
+						),
+					});
+					var line = new THREE.Line(circle, material);
+					scene.add(line);
+				}
 
-			function render() {
-				percentage += 0.0005;
-				var p1 = path.getPointAt(percentage % 1);
-				var p2 = path.getPointAt((percentage + 0.01) % 1);
-				camera.position.set(p1.x, p1.y, p1.z);
-				camera.lookAt(p2);
+				var percentage = 0;
 
-				//Render the scene
-				renderer.render(scene, camera);
+				function render() {
+					percentage += 0.0005;
+					var p1 = path.getPointAt(percentage % 1);
+					var p2 = path.getPointAt((percentage + 0.01) % 1);
+					camera.position.set(p1.x, p1.y, p1.z);
+					camera.lookAt(p2);
 
+					//Render the scene
+					renderer.render(scene, camera);
+
+					requestAnimationFrame(render);
+				}
 				requestAnimationFrame(render);
 			}
-			requestAnimationFrame(render);
+		</script>
+		<script>
+			(function () {
+				// create a three.js scene
+				const scene = new THREE.Scene();
+
+				// create a three.js camera
+				const camera = new THREE.PerspectiveCamera(
+					75,
+					window.innerWidth / window.innerHeight,
+					0.1,
+					1000
+				);
+
+				// create a three.js renderer
+				const renderer = new THREE.WebGLRenderer({
+					canvas: document.getElementById("canvas"),
+				});
+				renderer.setSize(window.innerWidth, window.innerHeight);
+
+				// create a light
+				const light = new THREE.PointLight(0xffffff, 1, 1000);
+				light.position.set(0, 0, 0);
+				scene.add(light);
+
+				// create an infinity symbol geometry
+				const geometry = new THREE.TorusKnotGeometry(5, 1, 100, 16);
+
+				// create an infinity symbol material
+				const material = new THREE.MeshPhongMaterial({
+					color: 0xffffff,
+				});
+
+				// create an infinity symbol mesh
+				const infinitySymbol = new THREE.Mesh(geometry, material);
+
+				// add the infinity symbol to the scene
+				scene.add(infinitySymbol);
+
+				// position the camera
+				camera.position.z = 15;
+
+				// render the scene
+				function render() {
+					requestAnimationFrame(render);
+
+					// rotate the infinity symbol
+					infinitySymbol.rotation.x += 0.01;
+					infinitySymbol.rotation.y += 0.01;
+
+					// render the scene
+					renderer.render(scene, camera);
+				}
+
+				render();
+			})();
 		</script>
 	</body>
 </html>

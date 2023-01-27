@@ -1,0 +1,305 @@
+@font-face {
+    font-family: base;
+    src: url("base.otf") format("opentype");
+}
+
+@font-face {
+    font-family: base;
+    font-weight: bold;
+    src: url("base.otf") format("opentype");
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+#particles-js {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #101010;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 50% 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main {
+    color: white;
+    position: absolute;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 3rem;
+    font-family: base;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#app {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+}
+
+.pre-text {
+    position: relative;
+    font-size: 3rem;
+    font-family: base;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+#wormhole {
+    display: none;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    user-select: none;
+    overflow: hidden;
+}
+
+.hero-text {
+    color: wheat;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 3rem;
+}
+
+.hero-text .title {
+    color: wheat;
+    font-size: 3rem;
+}
+
+.hero-text .subtitle {
+    color: wheat;
+    font-size: 2rem;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400');
+
+.dropping-texts {
+    position: relative;
+    width: max-content;
+    height: max-content;
+}
+
+.dropping-texts>div {
+    font-size: 24px;
+    background-color: brown;
+    padding: 8px;
+    border-radius: 8px;
+    opacity: 0;
+    position: absolute;
+    font-weight: 300;
+}
+
+.dropping-texts>div:nth-child(1) {
+    animation: roll 5s linear 1 0s;
+}
+
+.dropping-texts>div:nth-child(2) {
+    animation: roll 5s linear 1 2s;
+}
+
+.dropping-texts>div:nth-child(3) {
+    animation: roll1 8s linear 1 4s;
+}
+
+.breathing-texts {
+    display: none;
+}
+
+@keyframes roll {
+    0% {
+        font-size: 0px;
+        opacity: 0;
+        margin-left: -30px;
+        margin-top: 0px;
+    }
+
+    3% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    5% {
+        font-size: inherit;
+        opacity: 1;
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    20% {
+        font-size: inherit;
+        opacity: 1;
+        margin-left: 0px;
+        margin-top: 0px;
+        transform: rotate(0deg);
+    }
+
+    80% {
+        font-size: 0px;
+        opacity: 0.5;
+        margin-left: 20px;
+        margin-top: 100px;
+    }
+
+    100% {
+        font-size: 0px;
+        opacity: 0;
+        margin-top: 0px;
+    }
+}
+
+@keyframes roll1 {
+    0% {
+        font-size: 0px;
+        opacity: 0;
+        margin-left: -30px;
+        margin-top: 0px;
+    }
+
+    3% {
+        opacity: 1;
+        transform: rotate(0deg);
+    }
+
+    5% {
+        font-size: inherit;
+        opacity: 1;
+        margin-left: 0px;
+        margin-top: 0px;
+    }
+
+    20% {
+        font-size: inherit;
+        opacity: 1;
+        margin-left: 0px;
+        margin-top: 0px;
+        transform: rotate(0deg);
+    }
+
+    80% {
+        font-size: 0px;
+        opacity: 0.5;
+        margin-left: 20px;
+        margin-top: 100px;
+    }
+
+    100% {
+        font-size: 0px;
+        opacity: 0;
+        margin-top: 0px;
+    }
+}
+
+@media screen and (max-width: 640px) {
+    #main {
+        color: white;
+        position: absolute;
+        flex-wrap: wrap;
+        font-size: 3rem;
+        font-family: base;
+        width: 75vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .pre-text {
+        position: relative;
+        font-size: 2rem;
+        font-family: base;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .pre-text span {
+        text-align: center;
+    }
+
+    .dropping-texts {
+        display: none;
+    }
+
+    .breathing-texts {
+        display: block;
+        font-size: 2rem;
+        height: 2.5rem;
+    }
+
+    .breathing-texts div {
+        text-align: center;
+        font-size: 24px;
+        background-color: brown;
+        padding: 8px;
+        border-radius: 8px;
+    }
+
+    .breathing-texts>div:nth-child(1) {
+        opacity: 0;
+        font-size: 0rem;
+        animation: breath 2.5s ease-in-out 0s 1 forwards normal;
+    }
+
+    .breathing-texts>div:nth-child(2) {
+        opacity: 0;
+        font-size: 0rem;
+        animation: breath 2.5s ease-in-out 2.5s 1 forwards normal;
+    }
+
+    .breathing-texts>div:nth-child(3) {
+        opacity: 0;
+        font-size: 0rem;
+        animation: breath 4s ease-in-out 5s 1 forwards normal;
+    }
+
+    @keyframes breath {
+        0% {
+            opacity: 0;
+            font-size: 0rem;
+        }
+
+        1% {
+            opacity: 0;
+            font-size: 2rem;
+        }
+
+        20% {
+            opacity: 0.75;
+        }
+
+        50% {
+            opacity: 1;
+        }
+
+        80% {
+            opacity: 0.75;
+        }
+
+        99% {
+            opacity: 0;
+            font-size: 2rem;
+        }
+
+        100% {
+            opacity: 0;
+            font-size: 0rem;
+        }
+    }
+}
